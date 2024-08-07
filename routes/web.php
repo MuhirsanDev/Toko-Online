@@ -19,6 +19,18 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::middleware('auth')->group(function () {
+    // Rute untuk keranjang belanja
+    Route::get('/cart', function () {
+        return view('home.cart');
+    })->name('cart');
+
+    // Rute untuk checkout
+    Route::get('/checkout', function () {
+        return view('home.checkout');
+    })->name('checkout');
+});
+
 Route::get('/shop', function () {
     return view('home.shop');
 })->name('shop');
@@ -26,14 +38,6 @@ Route::get('/shop', function () {
 Route::get('/shop-detail', function () {
     return view('home.shop-detail');
 })->name('shop.detail');
-
-Route::get('/cart', function () {
-    return view('home.cart');
-})->name('cart');
-
-Route::get('/checkout', function () {
-    return view('home.checkout');
-})->name('checkout');
 
 Route::get('/testimonial', function () {
     return view('home.testimonial');
