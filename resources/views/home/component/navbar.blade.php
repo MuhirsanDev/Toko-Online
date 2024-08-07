@@ -21,7 +21,7 @@
             </button>
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="{{ url('index') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                     <a href="{{ url('shop') }}" class="nav-item nav-link">Shop</a>
                     <a href="{{ url('shop-detail') }}" class="nav-item nav-link">Shop Detail</a>
                     <div class="nav-item dropdown">
@@ -40,9 +40,26 @@
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
-                    <a href="#" class="my-auto">
+                    {{-- Melakukan check apakah user sudah login atau belum --}}
+                    @if(Auth::check())
+                    <div class="nav-item dropdown my-auto">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fas fa-user fa-2x"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ url('/login') }}" class="my-auto">
                         <i class="fas fa-user fa-2x"></i>
                     </a>
+                @endif
                 </div>
             </div>
         </nav>
