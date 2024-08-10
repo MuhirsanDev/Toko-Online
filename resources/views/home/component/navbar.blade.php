@@ -58,10 +58,10 @@
                             <i class="fas fa-user fa-2x"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
+                            <form method="GET" action="{{ url('/dashboard') }}">
+                                {{-- Ganti tombol Logout menjadi Dashboard --}}
+                                <button type="button" class="dropdown-item" onclick="window.location='{{ route('dashboard') }}'">
+                                    <i class="fas fa-home"></i> Dashboard
                                 </button>
                             </form>
                         </div>
