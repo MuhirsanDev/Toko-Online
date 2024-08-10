@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('home.index');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -46,3 +48,15 @@ Route::get('/testimonial', function () {
 Route::get('/contact', function () {
     return view('home.contact');
 })->name('contact');
+
+Route::get('/add-products', function () {
+    return view('dashboard.add-products');
+})->name('add-products');
+
+Route::post('/add-products', [ProductController::class, 'store']);
+
+Route::get('/category-products', function () {
+    return view('dashboard.category-products');
+})->name('category-products');
+
+Route::post('category-products', [CategoryController::class, 'store']);
